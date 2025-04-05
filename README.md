@@ -209,20 +209,24 @@ module "eventbus_dlq_example" {
   kms_key_id = aws_kms_key.my_key.id             # omit if you want a new KMS key to be created.
   tags       = var.tags
 }
+
+## Support
+
+EventBus++ is built and maintained by [ProactiveOps](https://proactiveops.com/). A newsletter produced by Dave Hall Consulting. If you have any questions or need help, please [contact us](https://davehall.com.au/contact/).
 ```
 
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0, <5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0, < 2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0, <6.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0, <5.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.94.1 |
 
 ## Modules
 
@@ -249,7 +253,6 @@ No modules.
 | [aws_iam_policy_document.events_assume](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.events_cross_account](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 
@@ -257,7 +260,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_allow_put_events_arns"></a> [allow\_put\_events\_arns](#input\_allow\_put\_events\_arns) | List of ARNs allowed to call PutEvents on this instance. Used for resource based cross account/region access. | `list(string)` | `[]` | no |
 | <a name="input_bus_policy_docs"></a> [bus\_policy\_docs](#input\_bus\_policy\_docs) | List of additional IAM policy documents to append to the access policy for this instance. Ignored if using a partner bus. Generally you will want to use `allow_put_events_arns` over this. | `list(string)` | `[]` | no |
-| <a name="input_cross_bus_rules"></a> [cross\_bus\_rules](#input\_cross\_bus\_rules) | List of cross bus routing rules. | <pre>list(<br>    object(<br>      {<br>        name       = string                 # Name of the rule<br>        target_arn = string                 # ARN of the target event bus<br>        pattern    = string                 # JSON string representation of event pattern used for matching events<br>        debug      = optional(bool, false)  # Enable debug logging for this rule<br>        dlq_arn    = optional(string, null) # ARN of the dead letter queue to use for this rule<br>      }<br>    )<br>  )</pre> | `[]` | no |
+| <a name="input_cross_bus_rules"></a> [cross\_bus\_rules](#input\_cross\_bus\_rules) | List of cross bus routing rules. | <pre>list(<br/>    object(<br/>      {<br/>        name       = string                 # Name of the rule<br/>        target_arn = string                 # ARN of the target event bus<br/>        pattern    = string                 # JSON string representation of event pattern used for matching events<br/>        debug      = optional(bool, false)  # Enable debug logging for this rule<br/>        dlq_arn    = optional(string, null) # ARN of the dead letter queue to use for this rule<br/>      }<br/>    )<br/>  )</pre> | `[]` | no |
 | <a name="input_enable_schema_discovery_registry"></a> [enable\_schema\_discovery\_registry](#input\_enable\_schema\_discovery\_registry) | Enable the EventBridge schema discovery resource. | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the eventbus or partner source. This must be unique per region per account. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags for resources created by module. | `map(string)` | n/a | yes |
