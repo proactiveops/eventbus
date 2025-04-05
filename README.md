@@ -1,4 +1,3 @@
-<!-- BEGIN_TF_DOCS -->
 # EventBus++ for Amazon EventBridge
 
 EventBus++ is a Terraform module for deploying a managed instance of Amazon’s EventBridge and associated services. The instance is configured with sane defaults and options to extend the functionality for the needs of your application.
@@ -215,6 +214,7 @@ module "eventbus_dlq_example" {
 EventBus++ is built and maintained by [ProactiveOps](https://proactiveops.com/). A newsletter produced by Dave Hall Consulting. If you have any questions or need help, please [contact us](https://davehall.com.au/contact/).
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
