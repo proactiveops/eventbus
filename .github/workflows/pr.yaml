@@ -1,0 +1,50 @@
+name: Terraform PR
+
+on: 
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tflint:
+    runs-on: ubuntu-latest
+
+    name: Check Terraform
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        name: Cache Plugins
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4.1.1
+        env:
+            GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tflint_version: v0.55.1
+
+      - name: Install Plugins
+        run: tflint --init
+
+      - name: Version
+        run: tflint --version
+
+      - name: Lint
+        run: |
+          tflint -f compact --recursive
+
+      - name: Run Trivy
+        uses: aquasecurity/trivy-action@0.30.0
+        with:
+          format: 'table'
+          scan-type: 'fs'
+          scanners: 'secret,misconfig'
+          ignore-unfixed: true
