@@ -42,7 +42,7 @@ jobs:
           tflint -f compact --recursive
 
       - name: Run Trivy
-        uses: aquasecurity/trivy-action@0.30.0
+        uses: aquasecurity/trivy-action@0.33.0
         with:
           format: 'table'
           scan-type: 'fs'
