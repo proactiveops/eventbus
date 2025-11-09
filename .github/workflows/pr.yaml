@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: actions/cache@v4
         name: Cache Plugins
@@ -25,11 +25,11 @@ jobs:
           key: tflint-${{ hashFiles('.tflint.hcl') }}
 
       - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v4.1.1
+        uses: terraform-linters/setup-tflint@v6.2.1
         env:
             GITHUB_TOKEN: ${{ github.token }}
         with:
-          tflint_version: v0.55.1
+          tflint_version: v0.59.1
 
       - name: Install Plugins
         run: tflint --init
@@ -42,7 +42,7 @@ jobs:
           tflint -f compact --recursive
 
       - name: Run Trivy
-        uses: aquasecurity/trivy-action@0.30.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           format: 'table'
           scan-type: 'fs'
