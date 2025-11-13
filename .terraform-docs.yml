@@ -1,8 +1,5 @@
 formatter: "markdown table"
 
-header-from: main.tf
-footer-from: ""
-
 recursive:
   enabled: true
   path: modules

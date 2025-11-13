@@ -19,6 +19,8 @@ resource "aws_cloudwatch_event_bus_policy" "this" {
   event_bus_name = aws_cloudwatch_event_bus.this.name
 }
 
+# TODO Add optional KMS encryption for the log group
+# trivy:ignore:AVD-AWS-0017 CWL-SSE us adequate for this use case.
 resource "aws_cloudwatch_log_group" "this" {
   for_each = {
     for index, rule in var.cross_bus_rules : rule.name => rule.debug
