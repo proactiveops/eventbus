@@ -28,8 +28,6 @@ jobs:
         uses: terraform-linters/setup-tflint@v6.2.1
         env:
             GITHUB_TOKEN: ${{ github.token }}
-        with:
-          tflint_version: v0.59.1
 
       - name: Install Plugins
         run: tflint --init
