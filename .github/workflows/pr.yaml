@@ -16,9 +16,9 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         name: Cache Plugins
         with:
           path: ~/.tflint.d/plugins
@@ -28,8 +28,6 @@ jobs:
         uses: terraform-linters/setup-tflint@v6.2.1
         env:
             GITHUB_TOKEN: ${{ github.token }}
-        with:
-          tflint_version: v0.59.1
 
       - name: Install Plugins
         run: tflint --init
