@@ -6,7 +6,7 @@ resource "aws_sqs_queue" "dlq" {
   receive_wait_time_seconds = 0
   max_message_size          = 262144
 
-  kms_master_key_id = local.kms_key_id
+  kms_master_key_id = var.kms_key_id
 
   tags = var.tags
 }
@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "dlq" {
   }
 
   dynamic "statement" {
-    for_each = local.kms_count == 1 ? [1] : []
+    for_each = var.kms_key_id == null ? [1] : []
     content {
       sid    = "events-policy"
       effect = "Allow"
@@ -39,7 +39,7 @@ data "aws_iam_policy_document" "dlq" {
         identifiers = ["events.amazonaws.com"]
       }
       resources = [
-        local.kms_key_id
+        var.kms_key_id
       ]
     }
   }

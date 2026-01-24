@@ -1,7 +1,6 @@
 variable "kms_key_id" {
-  description = "The ID of the existing KMS key. If empty, then a new key will be created with permissions for EventBridge."
+  description = "The ID of the existing KMS key."
   type        = string
-  default     = ""
 }
 
 variable "queue_name" {
@@ -12,9 +11,4 @@ variable "queue_name" {
 variable "tags" {
   description = "Tags help you manage, identify, organize search and filter resources."
   type        = map(string)
-}
-
-locals {
-  kms_count  = var.kms_key_id == "" ? 1 : 0
-  kms_key_id = local.kms_count == 1 ? aws_kms_key.this[0].id : var.kms_key_id
 }

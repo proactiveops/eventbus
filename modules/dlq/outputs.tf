@@ -4,6 +4,6 @@ output "arn" {
 }
 
 output "kms_id" {
-  value       = local.kms_key_id
+  value       = var.kms_key_id
   description = "The ID of the KMS used by the queue."
 }
