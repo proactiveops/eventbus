@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 data "aws_iam_policy_document" "event_bus" {
   statement {
     sid       = "iamManageBus"

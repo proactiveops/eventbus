@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 resource "aws_cloudwatch_event_rule" "targets" {
   for_each = { for index, rule in var.cross_bus_rules : rule.name => rule }
 

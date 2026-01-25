@@ -205,7 +205,7 @@ module "eventbus_dlq_example" {
   source = "git::ssh://git@github.com/proactiveops/eventbus//modules/dlq?ref=main"
 
   queue_name = "[sub-name]-[optional-rule-name]" # Must not exceed 60 characters as the module appends "-dlq" to the name
-  kms_key_id = aws_kms_key.my_key.id             # omit if you want a new KMS key to be created.
+  kms_key_id = aws_kms_key.my_key.id             # The key is required. If needed, create a new one and pass it to the module.
   tags       = var.tags
 }
 
@@ -220,13 +220,13 @@ EventBus++ is built and maintained by [ProactiveOps](https://proactiveops.com/).
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0, < 2.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0, <6.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0, <7.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.94.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0, <7.0 |
 
 ## Modules
 

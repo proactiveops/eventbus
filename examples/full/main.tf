@@ -1,17 +1,32 @@
-/**
- * Example of using EventBus++ module with multiple event buses and cross-bus rules.
- */
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
+resource "aws_kms_key" "this" {
+  description = "EvenBus Example"
+
+  deletion_window_in_days = 14
+  enable_key_rotation     = true
+
+  tags = local.tags
+}
+
+resource "aws_kms_alias" "this" {
+  name          = "alias/eventbus-example"
+  target_key_id = aws_kms_key.this.key_id
+}
 
 module "eventbus_dlq_example" {
   source = "../../modules/dlq"
 
+  kms_key_id = aws_kms_alias.this.arn
   queue_name = "example"
-  tags       = local.tags
+
+  tags = local.tags
 }
 
 module "eventbus_partner" {
   source = "../../"
 
+  # Note: Zendesk no longer supports EventBridge partnet buses.
   name = "aws.partner/zendesk.com/12345678/default"
 
   cross_bus_rules = [
