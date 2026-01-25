@@ -1,3 +1,4 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
 
 output "bus" {
   value       = aws_cloudwatch_event_bus.this

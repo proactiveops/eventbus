@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 resource "aws_kms_key" "this" {
   description = "EvenBus Example"
 

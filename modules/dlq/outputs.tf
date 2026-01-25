@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 output "arn" {
   value       = aws_sqs_queue.dlq.arn
   description = "The ARN of the dead letter queue."

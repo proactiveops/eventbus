@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 resource "aws_sqs_queue" "dlq" {
   name = "${var.queue_name}-dlq"
 

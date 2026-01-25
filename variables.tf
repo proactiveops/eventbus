@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 variable "name" {
   description = "The name of the eventbus or partner source. This must be unique per region per account."
   type        = string

@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 variable "kms_key_id" {
   description = "The ID of the existing KMS key."
   type        = string

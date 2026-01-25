@@ -1,3 +1,5 @@
+# Copyright 2023 - 2026 Dave Hall, https://proactiveops.io, MIT License
+
 resource "aws_cloudwatch_event_bus" "this" {
   name = local.namespace
 
